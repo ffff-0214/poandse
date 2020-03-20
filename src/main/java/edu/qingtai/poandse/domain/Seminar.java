@@ -1,6 +1,6 @@
 package edu.qingtai.poandse.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Seminar {
     private String uuid;
@@ -12,6 +12,8 @@ public class Seminar {
     private String starttime;
 
     private Date startdate;
+
+    private Integer favorite;
 
     private String content;
 
@@ -53,6 +55,14 @@ public class Seminar {
 
     public void setStartdate(Date startdate) {
         this.startdate = startdate;
+    }
+
+    public Integer getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(Integer favorite) {
+        this.favorite = favorite;
     }
 
     public String getContent() {

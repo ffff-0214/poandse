@@ -6,7 +6,7 @@
 
 <generatorConfiguration>
 
-    <context id="DB2Tables" targetRuntime="MyBatis3">
+    <context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
 
         <commentGenerator>
             <property name="suppressAllComments" value="true" />
@@ -36,8 +36,10 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
 
-        <table schema="" tableName="seminar"> </table>
-        <table schema="" tableName="xdjobs"> </table>
+        <!--<table schema="" tableName="seminar"> </table>-->
+        <!--<table schema="" tableName="xdjobs"> </table>-->
+        <table schema="" tableName="collectseminar"> </table>
+        <table schema="" tableName="collectxdjobs"> </table>
 
     </context>
 </generatorConfiguration>

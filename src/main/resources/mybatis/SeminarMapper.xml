@@ -7,6 +7,572 @@
     <result column="location" jdbcType="VARCHAR" property="location" />
     <result column="startTime" jdbcType="VARCHAR" property="starttime" />
     <result column="startDate" jdbcType="DATE" property="startdate" />
+    <result column="favorite" jdbcType="INTEGER" property="favorite" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="edu.qingtai.poandse.domain.Seminar">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    uuid, title, location, startTime, startDate, favorite
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="edu.qingtai.poandse.domain.SeminarExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from seminar
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="edu.qingtai.poandse.domain.SeminarExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from seminar
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from seminar
+    where uuid = #{uuid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from seminar
+    where uuid = #{uuid,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="edu.qingtai.poandse.domain.SeminarExample">
+    delete from seminar
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="edu.qingtai.poandse.domain.Seminar">
+    insert into seminar (uuid, title, location, 
+      startTime, startDate, favorite, 
+      content)
+    values (#{uuid,jdbcType=CHAR}, #{title,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{starttime,jdbcType=VARCHAR}, #{startdate,jdbcType=DATE}, #{favorite,jdbcType=INTEGER}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.qingtai.poandse.domain.Seminar">
+    insert into seminar
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+      <if test="starttime != null">
+        startTime,
+      </if>
+      <if test="startdate != null">
+        startDate,
+      </if>
+      <if test="favorite != null">
+        favorite,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null">
+        #{startdate,jdbcType=DATE},
+      </if>
+      <if test="favorite != null">
+        #{favorite,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="edu.qingtai.poandse.domain.SeminarExample" resultType="java.lang.Long">
+    select count(*) from seminar
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update seminar
+    <set>
+      <if test="record.uuid != null">
+        uuid = #{record.uuid,jdbcType=CHAR},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.location != null">
+        location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starttime != null">
+        startTime = #{record.starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startdate != null">
+        startDate = #{record.startdate,jdbcType=DATE},
+      </if>
+      <if test="record.favorite != null">
+        favorite = #{record.favorite,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update seminar
+    set uuid = #{record.uuid,jdbcType=CHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      location = #{record.location,jdbcType=VARCHAR},
+      startTime = #{record.starttime,jdbcType=VARCHAR},
+      startDate = #{record.startdate,jdbcType=DATE},
+      favorite = #{record.favorite,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update seminar
+    set uuid = #{record.uuid,jdbcType=CHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      location = #{record.location,jdbcType=VARCHAR},
+      startTime = #{record.starttime,jdbcType=VARCHAR},
+      startDate = #{record.startdate,jdbcType=DATE},
+      favorite = #{record.favorite,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.qingtai.poandse.domain.Seminar">
+    update seminar
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        startTime = #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null">
+        startDate = #{startdate,jdbcType=DATE},
+      </if>
+      <if test="favorite != null">
+        favorite = #{favorite,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.qingtai.poandse.domain.Seminar">
+    update seminar
+    set title = #{title,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      startTime = #{starttime,jdbcType=VARCHAR},
+      startDate = #{startdate,jdbcType=DATE},
+      favorite = #{favorite,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where uuid = #{uuid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.qingtai.poandse.domain.Seminar">
+    update seminar
+    set title = #{title,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      startTime = #{starttime,jdbcType=VARCHAR},
+      startDate = #{startdate,jdbcType=DATE},
+      favorite = #{favorite,jdbcType=INTEGER}
+    where uuid = #{uuid,jdbcType=CHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="edu.qingtai.poandse.domain.Seminar">
+    <id column="uuid" jdbcType="CHAR" property="uuid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="startTime" jdbcType="VARCHAR" property="starttime" />
+    <result column="startDate" jdbcType="DATE" property="startdate" />
+    <result column="favorite" jdbcType="INTEGER" property="favorite" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="edu.qingtai.poandse.domain.Seminar">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    uuid, title, location, startTime, startDate, favorite
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="edu.qingtai.poandse.domain.SeminarExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from seminar
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="edu.qingtai.poandse.domain.SeminarExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from seminar
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from seminar
+    where uuid = #{uuid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from seminar
+    where uuid = #{uuid,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="edu.qingtai.poandse.domain.SeminarExample">
+    delete from seminar
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="edu.qingtai.poandse.domain.Seminar">
+    insert into seminar (uuid, title, location, 
+      startTime, startDate, favorite, 
+      content)
+    values (#{uuid,jdbcType=CHAR}, #{title,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{starttime,jdbcType=VARCHAR}, #{startdate,jdbcType=DATE}, #{favorite,jdbcType=INTEGER}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.qingtai.poandse.domain.Seminar">
+    insert into seminar
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+      <if test="starttime != null">
+        startTime,
+      </if>
+      <if test="startdate != null">
+        startDate,
+      </if>
+      <if test="favorite != null">
+        favorite,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null">
+        #{startdate,jdbcType=DATE},
+      </if>
+      <if test="favorite != null">
+        #{favorite,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="edu.qingtai.poandse.domain.SeminarExample" resultType="java.lang.Long">
+    select count(*) from seminar
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update seminar
+    <set>
+      <if test="record.uuid != null">
+        uuid = #{record.uuid,jdbcType=CHAR},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.location != null">
+        location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starttime != null">
+        startTime = #{record.starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startdate != null">
+        startDate = #{record.startdate,jdbcType=DATE},
+      </if>
+      <if test="record.favorite != null">
+        favorite = #{record.favorite,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update seminar
+    set uuid = #{record.uuid,jdbcType=CHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      location = #{record.location,jdbcType=VARCHAR},
+      startTime = #{record.starttime,jdbcType=VARCHAR},
+      startDate = #{record.startdate,jdbcType=DATE},
+      favorite = #{record.favorite,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update seminar
+    set uuid = #{record.uuid,jdbcType=CHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      location = #{record.location,jdbcType=VARCHAR},
+      startTime = #{record.starttime,jdbcType=VARCHAR},
+      startDate = #{record.startdate,jdbcType=DATE},
+      favorite = #{record.favorite,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.qingtai.poandse.domain.Seminar">
+    update seminar
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        startTime = #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null">
+        startDate = #{startdate,jdbcType=DATE},
+      </if>
+      <if test="favorite != null">
+        favorite = #{favorite,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.qingtai.poandse.domain.Seminar">
+    update seminar
+    set title = #{title,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      startTime = #{starttime,jdbcType=VARCHAR},
+      startDate = #{startdate,jdbcType=DATE},
+      favorite = #{favorite,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where uuid = #{uuid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.qingtai.poandse.domain.Seminar">
+    update seminar
+    set title = #{title,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      startTime = #{starttime,jdbcType=VARCHAR},
+      startDate = #{startdate,jdbcType=DATE},
+      favorite = #{favorite,jdbcType=INTEGER}
+    where uuid = #{uuid,jdbcType=CHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="edu.qingtai.poandse.domain.Seminar">
+    <id column="uuid" jdbcType="CHAR" property="uuid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="startTime" jdbcType="VARCHAR" property="starttime" />
+    <result column="startDate" jdbcType="DATE" property="startdate" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="edu.qingtai.poandse.domain.Seminar">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
@@ -274,7 +840,7 @@
 
   <select id="selectSeminarsByUuidList" resultType="Seminar">
     select * from seminar where uuid in
-    <foreach collection="uuidList" item="uuid" open="(" separator="," close=")">
+    <foreach close=")" collection="uuidList" item="uuid" open="(" separator=",">
       #{uuid}
     </foreach>
   </select>

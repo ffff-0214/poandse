@@ -1,6 +1,6 @@
 package edu.qingtai.poandse.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Xdjobs {
     private String uuid;
