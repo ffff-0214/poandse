@@ -27,4 +27,10 @@ public class CollectxdjobsController {
     public List<Xdjobs> queryXdjobsByone(@RequestParam("rd3session") String rd3session){
         return collectxdjobsService.queryXdjobsFromOpenid(rd3session);
     }
+
+    @DeleteMapping
+    public void deleteXdjobsCollect(@RequestParam("uuid") String uuid,
+                                     @RequestParam("rd3session") String rd3session){
+        collectxdjobsService.deleteXdjobs(uuid, rd3session);
+    }
 }

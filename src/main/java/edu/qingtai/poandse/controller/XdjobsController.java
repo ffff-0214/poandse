@@ -21,7 +21,7 @@ public class XdjobsController {
     }
 
     @GetMapping
-    List<Xdjobs> getPageList(@RequestParam("pageIndex") int pageIndex){
+    List<Xdjobs> getXdjobs(@RequestParam("pageIndex") int pageIndex){
         return xdjobsService.queryPageJobs(pageIndex);
     }
 

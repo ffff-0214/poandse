@@ -28,4 +28,10 @@ public class CollectseminarController {
     public List<Seminar> querySeminarByone(@RequestParam("rd3session") String rd3session){
         return collectseminarService.querySeminarFromOpenid(rd3session);
     }
+
+    @DeleteMapping
+    public void deleteSeminarCollect(@RequestParam("uuid") String uuid,
+                                     @RequestParam("rd3session") String rd3session){
+        collectseminarService.deleteSeminar(uuid, rd3session);
+    }
 }

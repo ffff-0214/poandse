@@ -7,4 +7,5 @@ import java.util.List;
 public interface CollectxdjobsService {
     void saveXdjobs(String uuid, String rd3session);
     List<Xdjobs> queryXdjobsFromOpenid(String rd3session);
+    void deleteXdjobs(String uuid, String rd3session);
 }

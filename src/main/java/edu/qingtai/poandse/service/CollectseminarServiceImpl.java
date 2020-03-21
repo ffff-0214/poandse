@@ -32,11 +32,22 @@ public class CollectseminarServiceImpl implements CollectseminarService{
         collectseminar.setOpenid(openid);
         collectseminar.setUuid(uuid);
         collectseminarMapper.insert(collectseminar);
+        Seminar seminar = seminarMapper.selectByPrimaryKey(uuid);
+        seminar.setFavorite(seminar.getFavorite() + 1);
+        seminarMapper.updateByPrimaryKey(seminar);
     }
 
     @Override
     public List<Seminar> querySeminarFromOpenid(String rd3session){
         return seminarMapper.selectSeminarsByUuidList(
                 collectseminarMapper.selectUuidByOpenid(redisUtils.get(rd3session)));
+    }
+
+    @Override
+    public void deleteSeminar(String uuid, String rd3session){
+        collectseminarMapper.deleteByPrimaryKey(uuid, redisUtils.get(rd3session));
+        Seminar seminar = seminarMapper.selectByPrimaryKey(uuid);
+        seminar.setFavorite(seminar.getFavorite() - 1);
+        seminarMapper.updateByPrimaryKey(seminar);
     }
 }
