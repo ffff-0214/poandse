@@ -3,6 +3,7 @@ package edu.qingtai.poandse.config;
 import edu.qingtai.poandse.interceptor.VerifyInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -17,5 +18,11 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(getVerifyInterceptor())
                 .addPathPatterns("/**");
+    }
+
+
+    @Override
+    public void addCorsMappings(CorsRegistry corsRegistry){
+        corsRegistry.addMapping("/**");
     }
 }

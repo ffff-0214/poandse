@@ -2,7 +2,6 @@ package edu.qingtai.poandse.controller;
 
 import edu.qingtai.poandse.domain.Seminar;
 import edu.qingtai.poandse.service.CollectseminarService;
-import edu.qingtai.poandse.service.SeminarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

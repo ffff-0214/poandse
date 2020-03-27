@@ -1,10 +1,8 @@
 package edu.qingtai.poandse.service;
 
 import edu.qingtai.poandse.domain.Xdjobs;
-import edu.qingtai.poandse.domain.XdjobsExample;
 import edu.qingtai.poandse.mapper.XdjobsMapper;
 import edu.qingtai.poandse.util.ConstData;
-import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
