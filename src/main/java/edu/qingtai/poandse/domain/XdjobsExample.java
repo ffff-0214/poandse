@@ -343,72 +343,72 @@ public class XdjobsExample {
         }
 
         public Criteria andWorkplaceIsNull() {
-            addCriterion("workPlace is null");
+            addCriterion("workplace is null");
             return (Criteria) this;
         }
 
         public Criteria andWorkplaceIsNotNull() {
-            addCriterion("workPlace is not null");
+            addCriterion("workplace is not null");
             return (Criteria) this;
         }
 
         public Criteria andWorkplaceEqualTo(String value) {
-            addCriterion("workPlace =", value, "workplace");
+            addCriterion("workplace =", value, "workplace");
             return (Criteria) this;
         }
 
         public Criteria andWorkplaceNotEqualTo(String value) {
-            addCriterion("workPlace <>", value, "workplace");
+            addCriterion("workplace <>", value, "workplace");
             return (Criteria) this;
         }
 
         public Criteria andWorkplaceGreaterThan(String value) {
-            addCriterion("workPlace >", value, "workplace");
+            addCriterion("workplace >", value, "workplace");
             return (Criteria) this;
         }
 
         public Criteria andWorkplaceGreaterThanOrEqualTo(String value) {
-            addCriterion("workPlace >=", value, "workplace");
+            addCriterion("workplace >=", value, "workplace");
             return (Criteria) this;
         }
 
         public Criteria andWorkplaceLessThan(String value) {
-            addCriterion("workPlace <", value, "workplace");
+            addCriterion("workplace <", value, "workplace");
             return (Criteria) this;
         }
 
         public Criteria andWorkplaceLessThanOrEqualTo(String value) {
-            addCriterion("workPlace <=", value, "workplace");
+            addCriterion("workplace <=", value, "workplace");
             return (Criteria) this;
         }
 
         public Criteria andWorkplaceLike(String value) {
-            addCriterion("workPlace like", value, "workplace");
+            addCriterion("workplace like", value, "workplace");
             return (Criteria) this;
         }
 
         public Criteria andWorkplaceNotLike(String value) {
-            addCriterion("workPlace not like", value, "workplace");
+            addCriterion("workplace not like", value, "workplace");
             return (Criteria) this;
         }
 
         public Criteria andWorkplaceIn(List<String> values) {
-            addCriterion("workPlace in", values, "workplace");
+            addCriterion("workplace in", values, "workplace");
             return (Criteria) this;
         }
 
         public Criteria andWorkplaceNotIn(List<String> values) {
-            addCriterion("workPlace not in", values, "workplace");
+            addCriterion("workplace not in", values, "workplace");
             return (Criteria) this;
         }
 
         public Criteria andWorkplaceBetween(String value1, String value2) {
-            addCriterion("workPlace between", value1, value2, "workplace");
+            addCriterion("workplace between", value1, value2, "workplace");
             return (Criteria) this;
         }
 
         public Criteria andWorkplaceNotBetween(String value1, String value2) {
-            addCriterion("workPlace not between", value1, value2, "workplace");
+            addCriterion("workplace not between", value1, value2, "workplace");
             return (Criteria) this;
         }
 
@@ -483,132 +483,132 @@ public class XdjobsExample {
         }
 
         public Criteria andWorkyearsIsNull() {
-            addCriterion("workYears is null");
+            addCriterion("workyears is null");
             return (Criteria) this;
         }
 
         public Criteria andWorkyearsIsNotNull() {
-            addCriterion("workYears is not null");
+            addCriterion("workyears is not null");
             return (Criteria) this;
         }
 
         public Criteria andWorkyearsEqualTo(String value) {
-            addCriterion("workYears =", value, "workyears");
+            addCriterion("workyears =", value, "workyears");
             return (Criteria) this;
         }
 
         public Criteria andWorkyearsNotEqualTo(String value) {
-            addCriterion("workYears <>", value, "workyears");
+            addCriterion("workyears <>", value, "workyears");
             return (Criteria) this;
         }
 
         public Criteria andWorkyearsGreaterThan(String value) {
-            addCriterion("workYears >", value, "workyears");
+            addCriterion("workyears >", value, "workyears");
             return (Criteria) this;
         }
 
         public Criteria andWorkyearsGreaterThanOrEqualTo(String value) {
-            addCriterion("workYears >=", value, "workyears");
+            addCriterion("workyears >=", value, "workyears");
             return (Criteria) this;
         }
 
         public Criteria andWorkyearsLessThan(String value) {
-            addCriterion("workYears <", value, "workyears");
+            addCriterion("workyears <", value, "workyears");
             return (Criteria) this;
         }
 
         public Criteria andWorkyearsLessThanOrEqualTo(String value) {
-            addCriterion("workYears <=", value, "workyears");
+            addCriterion("workyears <=", value, "workyears");
             return (Criteria) this;
         }
 
         public Criteria andWorkyearsLike(String value) {
-            addCriterion("workYears like", value, "workyears");
+            addCriterion("workyears like", value, "workyears");
             return (Criteria) this;
         }
 
         public Criteria andWorkyearsNotLike(String value) {
-            addCriterion("workYears not like", value, "workyears");
+            addCriterion("workyears not like", value, "workyears");
             return (Criteria) this;
         }
 
         public Criteria andWorkyearsIn(List<String> values) {
-            addCriterion("workYears in", values, "workyears");
+            addCriterion("workyears in", values, "workyears");
             return (Criteria) this;
         }
 
         public Criteria andWorkyearsNotIn(List<String> values) {
-            addCriterion("workYears not in", values, "workyears");
+            addCriterion("workyears not in", values, "workyears");
             return (Criteria) this;
         }
 
         public Criteria andWorkyearsBetween(String value1, String value2) {
-            addCriterion("workYears between", value1, value2, "workyears");
+            addCriterion("workyears between", value1, value2, "workyears");
             return (Criteria) this;
         }
 
         public Criteria andWorkyearsNotBetween(String value1, String value2) {
-            addCriterion("workYears not between", value1, value2, "workyears");
+            addCriterion("workyears not between", value1, value2, "workyears");
             return (Criteria) this;
         }
 
         public Criteria andReleasetimeIsNull() {
-            addCriterion("releaseTime is null");
+            addCriterion("releasetime is null");
             return (Criteria) this;
         }
 
         public Criteria andReleasetimeIsNotNull() {
-            addCriterion("releaseTime is not null");
+            addCriterion("releasetime is not null");
             return (Criteria) this;
         }
 
         public Criteria andReleasetimeEqualTo(Date value) {
-            addCriterionForJDBCDate("releaseTime =", value, "releasetime");
+            addCriterionForJDBCDate("releasetime =", value, "releasetime");
             return (Criteria) this;
         }
 
         public Criteria andReleasetimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("releaseTime <>", value, "releasetime");
+            addCriterionForJDBCDate("releasetime <>", value, "releasetime");
             return (Criteria) this;
         }
 
         public Criteria andReleasetimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("releaseTime >", value, "releasetime");
+            addCriterionForJDBCDate("releasetime >", value, "releasetime");
             return (Criteria) this;
         }
 
         public Criteria andReleasetimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("releaseTime >=", value, "releasetime");
+            addCriterionForJDBCDate("releasetime >=", value, "releasetime");
             return (Criteria) this;
         }
 
         public Criteria andReleasetimeLessThan(Date value) {
-            addCriterionForJDBCDate("releaseTime <", value, "releasetime");
+            addCriterionForJDBCDate("releasetime <", value, "releasetime");
             return (Criteria) this;
         }
 
         public Criteria andReleasetimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("releaseTime <=", value, "releasetime");
+            addCriterionForJDBCDate("releasetime <=", value, "releasetime");
             return (Criteria) this;
         }
 
         public Criteria andReleasetimeIn(List<Date> values) {
-            addCriterionForJDBCDate("releaseTime in", values, "releasetime");
+            addCriterionForJDBCDate("releasetime in", values, "releasetime");
             return (Criteria) this;
         }
 
         public Criteria andReleasetimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("releaseTime not in", values, "releasetime");
+            addCriterionForJDBCDate("releasetime not in", values, "releasetime");
             return (Criteria) this;
         }
 
         public Criteria andReleasetimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("releaseTime between", value1, value2, "releasetime");
+            addCriterionForJDBCDate("releasetime between", value1, value2, "releasetime");
             return (Criteria) this;
         }
 
         public Criteria andReleasetimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("releaseTime not between", value1, value2, "releasetime");
+            addCriterionForJDBCDate("releasetime not between", value1, value2, "releasetime");
             return (Criteria) this;
         }
 

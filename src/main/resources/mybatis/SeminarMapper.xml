@@ -5,8 +5,8 @@
     <id column="uuid" jdbcType="CHAR" property="uuid" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="location" jdbcType="VARCHAR" property="location" />
-    <result column="startTime" jdbcType="VARCHAR" property="starttime" />
-    <result column="startDate" jdbcType="DATE" property="startdate" />
+    <result column="starttime" jdbcType="VARCHAR" property="starttime" />
+    <result column="startdate" jdbcType="DATE" property="startdate" />
     <result column="favorite" jdbcType="INTEGER" property="favorite" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="edu.qingtai.poandse.domain.Seminar">
@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    uuid, title, location, startTime, startDate, favorite
+    uuid, title, location, starttime, startdate, favorite
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -126,7 +126,7 @@
   </delete>
   <insert id="insert" parameterType="edu.qingtai.poandse.domain.Seminar">
     insert into seminar (uuid, title, location, 
-      startTime, startDate, favorite, 
+      starttime, startdate, favorite, 
       content)
     values (#{uuid,jdbcType=CHAR}, #{title,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
       #{starttime,jdbcType=VARCHAR}, #{startdate,jdbcType=DATE}, #{favorite,jdbcType=INTEGER}, 
@@ -145,10 +145,10 @@
         location,
       </if>
       <if test="starttime != null">
-        startTime,
+        starttime,
       </if>
       <if test="startdate != null">
-        startDate,
+        startdate,
       </if>
       <if test="favorite != null">
         favorite,
@@ -200,10 +200,10 @@
         location = #{record.location,jdbcType=VARCHAR},
       </if>
       <if test="record.starttime != null">
-        startTime = #{record.starttime,jdbcType=VARCHAR},
+        starttime = #{record.starttime,jdbcType=VARCHAR},
       </if>
       <if test="record.startdate != null">
-        startDate = #{record.startdate,jdbcType=DATE},
+        startdate = #{record.startdate,jdbcType=DATE},
       </if>
       <if test="record.favorite != null">
         favorite = #{record.favorite,jdbcType=INTEGER},
@@ -221,8 +221,8 @@
     set uuid = #{record.uuid,jdbcType=CHAR},
       title = #{record.title,jdbcType=VARCHAR},
       location = #{record.location,jdbcType=VARCHAR},
-      startTime = #{record.starttime,jdbcType=VARCHAR},
-      startDate = #{record.startdate,jdbcType=DATE},
+      starttime = #{record.starttime,jdbcType=VARCHAR},
+      startdate = #{record.startdate,jdbcType=DATE},
       favorite = #{record.favorite,jdbcType=INTEGER},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
@@ -234,8 +234,8 @@
     set uuid = #{record.uuid,jdbcType=CHAR},
       title = #{record.title,jdbcType=VARCHAR},
       location = #{record.location,jdbcType=VARCHAR},
-      startTime = #{record.starttime,jdbcType=VARCHAR},
-      startDate = #{record.startdate,jdbcType=DATE},
+      starttime = #{record.starttime,jdbcType=VARCHAR},
+      startdate = #{record.startdate,jdbcType=DATE},
       favorite = #{record.favorite,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -251,10 +251,10 @@
         location = #{location,jdbcType=VARCHAR},
       </if>
       <if test="starttime != null">
-        startTime = #{starttime,jdbcType=VARCHAR},
+        starttime = #{starttime,jdbcType=VARCHAR},
       </if>
       <if test="startdate != null">
-        startDate = #{startdate,jdbcType=DATE},
+        startdate = #{startdate,jdbcType=DATE},
       </if>
       <if test="favorite != null">
         favorite = #{favorite,jdbcType=INTEGER},
@@ -269,8 +269,8 @@
     update seminar
     set title = #{title,jdbcType=VARCHAR},
       location = #{location,jdbcType=VARCHAR},
-      startTime = #{starttime,jdbcType=VARCHAR},
-      startDate = #{startdate,jdbcType=DATE},
+      starttime = #{starttime,jdbcType=VARCHAR},
+      startdate = #{startdate,jdbcType=DATE},
       favorite = #{favorite,jdbcType=INTEGER},
       content = #{content,jdbcType=LONGVARCHAR}
     where uuid = #{uuid,jdbcType=CHAR}
@@ -279,8 +279,8 @@
     update seminar
     set title = #{title,jdbcType=VARCHAR},
       location = #{location,jdbcType=VARCHAR},
-      startTime = #{starttime,jdbcType=VARCHAR},
-      startDate = #{startdate,jdbcType=DATE},
+      starttime = #{starttime,jdbcType=VARCHAR},
+      startdate = #{startdate,jdbcType=DATE},
       favorite = #{favorite,jdbcType=INTEGER}
     where uuid = #{uuid,jdbcType=CHAR}
   </update>

@@ -5,10 +5,10 @@
     <id column="uuid" jdbcType="CHAR" property="uuid" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="company" jdbcType="VARCHAR" property="company" />
-    <result column="workPlace" jdbcType="VARCHAR" property="workplace" />
+    <result column="workplace" jdbcType="VARCHAR" property="workplace" />
     <result column="education" jdbcType="VARCHAR" property="education" />
-    <result column="workYears" jdbcType="VARCHAR" property="workyears" />
-    <result column="releaseTime" jdbcType="DATE" property="releasetime" />
+    <result column="workyears" jdbcType="VARCHAR" property="workyears" />
+    <result column="releasetime" jdbcType="DATE" property="releasetime" />
     <result column="favorite" jdbcType="INTEGER" property="favorite" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="edu.qingtai.poandse.domain.Xdjobs">
@@ -73,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    uuid, title, company, workPlace, education, workYears, releaseTime, favorite
+    uuid, title, company, workplace, education, workyears, releasetime, favorite
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -128,8 +128,8 @@
   </delete>
   <insert id="insert" parameterType="edu.qingtai.poandse.domain.Xdjobs">
     insert into xdjobs (uuid, title, company, 
-      workPlace, education, workYears, 
-      releaseTime, favorite, content
+      workplace, education, workyears, 
+      releasetime, favorite, content
       )
     values (#{uuid,jdbcType=CHAR}, #{title,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, 
       #{workplace,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, #{workyears,jdbcType=VARCHAR}, 
@@ -149,16 +149,16 @@
         company,
       </if>
       <if test="workplace != null">
-        workPlace,
+        workplace,
       </if>
       <if test="education != null">
         education,
       </if>
       <if test="workyears != null">
-        workYears,
+        workyears,
       </if>
       <if test="releasetime != null">
-        releaseTime,
+        releasetime,
       </if>
       <if test="favorite != null">
         favorite,
@@ -216,16 +216,16 @@
         company = #{record.company,jdbcType=VARCHAR},
       </if>
       <if test="record.workplace != null">
-        workPlace = #{record.workplace,jdbcType=VARCHAR},
+        workplace = #{record.workplace,jdbcType=VARCHAR},
       </if>
       <if test="record.education != null">
         education = #{record.education,jdbcType=VARCHAR},
       </if>
       <if test="record.workyears != null">
-        workYears = #{record.workyears,jdbcType=VARCHAR},
+        workyears = #{record.workyears,jdbcType=VARCHAR},
       </if>
       <if test="record.releasetime != null">
-        releaseTime = #{record.releasetime,jdbcType=DATE},
+        releasetime = #{record.releasetime,jdbcType=DATE},
       </if>
       <if test="record.favorite != null">
         favorite = #{record.favorite,jdbcType=INTEGER},
@@ -243,10 +243,10 @@
     set uuid = #{record.uuid,jdbcType=CHAR},
       title = #{record.title,jdbcType=VARCHAR},
       company = #{record.company,jdbcType=VARCHAR},
-      workPlace = #{record.workplace,jdbcType=VARCHAR},
+      workplace = #{record.workplace,jdbcType=VARCHAR},
       education = #{record.education,jdbcType=VARCHAR},
-      workYears = #{record.workyears,jdbcType=VARCHAR},
-      releaseTime = #{record.releasetime,jdbcType=DATE},
+      workyears = #{record.workyears,jdbcType=VARCHAR},
+      releasetime = #{record.releasetime,jdbcType=DATE},
       favorite = #{record.favorite,jdbcType=INTEGER},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
@@ -258,10 +258,10 @@
     set uuid = #{record.uuid,jdbcType=CHAR},
       title = #{record.title,jdbcType=VARCHAR},
       company = #{record.company,jdbcType=VARCHAR},
-      workPlace = #{record.workplace,jdbcType=VARCHAR},
+      workplace = #{record.workplace,jdbcType=VARCHAR},
       education = #{record.education,jdbcType=VARCHAR},
-      workYears = #{record.workyears,jdbcType=VARCHAR},
-      releaseTime = #{record.releasetime,jdbcType=DATE},
+      workyears = #{record.workyears,jdbcType=VARCHAR},
+      releasetime = #{record.releasetime,jdbcType=DATE},
       favorite = #{record.favorite,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -277,16 +277,16 @@
         company = #{company,jdbcType=VARCHAR},
       </if>
       <if test="workplace != null">
-        workPlace = #{workplace,jdbcType=VARCHAR},
+        workplace = #{workplace,jdbcType=VARCHAR},
       </if>
       <if test="education != null">
         education = #{education,jdbcType=VARCHAR},
       </if>
       <if test="workyears != null">
-        workYears = #{workyears,jdbcType=VARCHAR},
+        workyears = #{workyears,jdbcType=VARCHAR},
       </if>
       <if test="releasetime != null">
-        releaseTime = #{releasetime,jdbcType=DATE},
+        releasetime = #{releasetime,jdbcType=DATE},
       </if>
       <if test="favorite != null">
         favorite = #{favorite,jdbcType=INTEGER},
@@ -301,10 +301,10 @@
     update xdjobs
     set title = #{title,jdbcType=VARCHAR},
       company = #{company,jdbcType=VARCHAR},
-      workPlace = #{workplace,jdbcType=VARCHAR},
+      workplace = #{workplace,jdbcType=VARCHAR},
       education = #{education,jdbcType=VARCHAR},
-      workYears = #{workyears,jdbcType=VARCHAR},
-      releaseTime = #{releasetime,jdbcType=DATE},
+      workyears = #{workyears,jdbcType=VARCHAR},
+      releasetime = #{releasetime,jdbcType=DATE},
       favorite = #{favorite,jdbcType=INTEGER},
       content = #{content,jdbcType=LONGVARCHAR}
     where uuid = #{uuid,jdbcType=CHAR}
@@ -313,10 +313,10 @@
     update xdjobs
     set title = #{title,jdbcType=VARCHAR},
       company = #{company,jdbcType=VARCHAR},
-      workPlace = #{workplace,jdbcType=VARCHAR},
+      workplace = #{workplace,jdbcType=VARCHAR},
       education = #{education,jdbcType=VARCHAR},
-      workYears = #{workyears,jdbcType=VARCHAR},
-      releaseTime = #{releasetime,jdbcType=DATE},
+      workyears = #{workyears,jdbcType=VARCHAR},
+      releasetime = #{releasetime,jdbcType=DATE},
       favorite = #{favorite,jdbcType=INTEGER}
     where uuid = #{uuid,jdbcType=CHAR}
   </update>
