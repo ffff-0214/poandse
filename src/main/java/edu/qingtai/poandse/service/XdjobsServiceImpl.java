@@ -1,20 +1,32 @@
 package edu.qingtai.poandse.service;
 
 import edu.qingtai.poandse.domain.Xdjobs;
+import edu.qingtai.poandse.domain.XdjobsVo;
+import edu.qingtai.poandse.mapper.CollectxdjobsMapper;
 import edu.qingtai.poandse.mapper.XdjobsMapper;
 import edu.qingtai.poandse.util.ConstData;
+import edu.qingtai.poandse.util.RedisUtils;
+import org.dozer.DozerBeanMapperBuilder;
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class XdjobsServiceImpl implements XdjobsService{
     private XdjobsMapper xdjobsMapper;
+    private CollectxdjobsMapper collectxdjobsMapper;
+    private RedisUtils redisUtils;
 
     @Autowired
-    public XdjobsServiceImpl(final XdjobsMapper xdjobsMapper){
+    public XdjobsServiceImpl(final XdjobsMapper xdjobsMapper,
+                             final CollectxdjobsMapper collectxdjobsMapper,
+                             final RedisUtils redisUtils){
         this.xdjobsMapper=xdjobsMapper;
+        this.collectxdjobsMapper = collectxdjobsMapper;
+        this.redisUtils = redisUtils;
     }
 
     @Override
@@ -26,5 +38,32 @@ public class XdjobsServiceImpl implements XdjobsService{
             return null;
         }
         return xdjobsMapper.selectXdjobsByUuidList(uuidList);
+    }
+
+    @Override
+    public List<XdjobsVo> queryTrueXdjobs(int pageIndex, String rd3session){
+        Mapper mapper = DozerBeanMapperBuilder.buildDefault();
+
+        List<Xdjobs> xdjobsList = queryPageJobs(pageIndex);
+
+        List<String> uuidList = collectxdjobsMapper.selectUuidByOpenid(redisUtils.get(rd3session));
+
+        List<XdjobsVo> xdjobsVoList = new ArrayList<>();
+
+        if(xdjobsList == null){
+            return xdjobsVoList;
+        }else{
+            for (Xdjobs xdjobs: xdjobsList) {
+                if(uuidList.contains(xdjobs.getUuid())){
+                    XdjobsVo xdjobsVo = mapper.map(xdjobs, XdjobsVo.class);
+                    xdjobsVo.setCollect(Boolean.TRUE);
+                    xdjobsVoList.add(xdjobsVo);
+                }else{
+                    xdjobsVoList.add(mapper.map(xdjobs, XdjobsVo.class));
+                }
+            }
+
+            return xdjobsVoList;
+        }
     }
 }

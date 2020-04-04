@@ -1,6 +1,6 @@
 package edu.qingtai.poandse.controller;
 
-import edu.qingtai.poandse.domain.Seminar;
+import edu.qingtai.poandse.domain.SeminarVo;
 import edu.qingtai.poandse.service.SeminarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +21,8 @@ public class SeminarController {
     }
 
     @GetMapping
-    public List<Seminar> getSeminars(@RequestParam("pageIndex") int pageIndex){
-        return seminarService.queryPageSeminars(pageIndex);
+    public List<SeminarVo> getSeminars(@RequestParam("pageIndex") int pageIndex,
+                                       @RequestParam("rd3session") String rd3session){
+        return seminarService.queryTrueSeminar(pageIndex, rd3session);
     }
 }
