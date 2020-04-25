@@ -19,14 +19,17 @@ public class XdjobsServiceImpl implements XdjobsService{
     private XdjobsMapper xdjobsMapper;
     private CollectxdjobsMapper collectxdjobsMapper;
     private RedisUtils redisUtils;
+    private Mapper mapper;
 
     @Autowired
     public XdjobsServiceImpl(final XdjobsMapper xdjobsMapper,
                              final CollectxdjobsMapper collectxdjobsMapper,
-                             final RedisUtils redisUtils){
+                             final RedisUtils redisUtils,
+                             final Mapper mapper){
         this.xdjobsMapper=xdjobsMapper;
         this.collectxdjobsMapper = collectxdjobsMapper;
         this.redisUtils = redisUtils;
+        this.mapper = mapper;
     }
 
     @Override
@@ -42,7 +45,7 @@ public class XdjobsServiceImpl implements XdjobsService{
 
     @Override
     public List<XdjobsVo> queryTrueXdjobs(int pageIndex, String rd3session){
-        Mapper mapper = DozerBeanMapperBuilder.buildDefault();
+//        Mapper mapper = DozerBeanMapperBuilder.buildDefault();
 
         List<Xdjobs> xdjobsList = queryPageJobs(pageIndex);
 

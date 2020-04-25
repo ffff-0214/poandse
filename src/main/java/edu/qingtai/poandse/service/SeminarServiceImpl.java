@@ -20,14 +20,17 @@ public class SeminarServiceImpl implements SeminarService{
     private SeminarMapper seminarMapper;
     private CollectseminarMapper collectseminarMapper;
     private RedisUtils redisUtils;
+    private Mapper mapper;
 
     @Autowired
     public SeminarServiceImpl(final SeminarMapper seminarMapper,
                               final CollectseminarMapper collectseminarMapper,
-                              final RedisUtils redisUtils){
+                              final RedisUtils redisUtils,
+                              final Mapper mapper){
         this.seminarMapper = seminarMapper;
         this.collectseminarMapper = collectseminarMapper;
         this.redisUtils = redisUtils;
+        this.mapper = mapper;
     }
 
     @Override
@@ -43,7 +46,7 @@ public class SeminarServiceImpl implements SeminarService{
 
     @Override
     public List<SeminarVo> queryTrueSeminar(int pageIndex, String rd3session){
-        Mapper mapper = DozerBeanMapperBuilder.buildDefault();
+//        Mapper mapper = DozerBeanMapperBuilder.buildDefault();
 
         List<Seminar> seminarList =  queryPageSeminars(pageIndex);
 

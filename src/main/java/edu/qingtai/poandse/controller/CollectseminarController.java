@@ -1,6 +1,7 @@
 package edu.qingtai.poandse.controller;
 
 import edu.qingtai.poandse.domain.Seminar;
+import edu.qingtai.poandse.domain.SeminarVo;
 import edu.qingtai.poandse.service.CollectseminarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class CollectseminarController {
     }
 
     @GetMapping
-    public List<Seminar> querySeminarByone(@RequestParam("rd3session") String rd3session){
+    public List<SeminarVo> querySeminarByone(@RequestParam("rd3session") String rd3session){
         return collectseminarService.querySeminarFromOpenid(rd3session);
     }
 

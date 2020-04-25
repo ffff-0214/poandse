@@ -1,6 +1,7 @@
 package edu.qingtai.poandse.controller;
 
 import edu.qingtai.poandse.domain.Xdjobs;
+import edu.qingtai.poandse.domain.XdjobsVo;
 import edu.qingtai.poandse.service.CollectxdjobsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class CollectxdjobsController {
     }
 
     @GetMapping
-    public List<Xdjobs> queryXdjobsByone(@RequestParam("rd3session") String rd3session){
+    public List<XdjobsVo> queryXdjobsByone(@RequestParam("rd3session") String rd3session){
         return collectxdjobsService.queryXdjobsFromOpenid(rd3session);
     }
 

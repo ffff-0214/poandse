@@ -2,12 +2,15 @@ package edu.qingtai.poandse.service;
 
 import edu.qingtai.poandse.domain.Collectseminar;
 import edu.qingtai.poandse.domain.Seminar;
+import edu.qingtai.poandse.domain.SeminarVo;
 import edu.qingtai.poandse.mapper.CollectseminarMapper;
 import edu.qingtai.poandse.mapper.SeminarMapper;
 import edu.qingtai.poandse.util.RedisUtils;
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,14 +18,17 @@ public class CollectseminarServiceImpl implements CollectseminarService{
     private CollectseminarMapper collectseminarMapper;
     private SeminarMapper seminarMapper;
     private RedisUtils redisUtils;
+    private Mapper mapper;
 
     @Autowired
     public CollectseminarServiceImpl(final CollectseminarMapper collectseminarMapper,
                                      final SeminarMapper seminarMapper,
-                                     final RedisUtils redisUtils){
+                                     final RedisUtils redisUtils,
+                                     final Mapper mapper){
         this.collectseminarMapper = collectseminarMapper;
         this.seminarMapper = seminarMapper;
         this.redisUtils = redisUtils;
+        this.mapper = mapper;
     }
 
     @Override
@@ -38,9 +44,21 @@ public class CollectseminarServiceImpl implements CollectseminarService{
     }
 
     @Override
-    public List<Seminar> querySeminarFromOpenid(String rd3session){
-        return seminarMapper.selectSeminarsByUuidList(
+    public List<SeminarVo> querySeminarFromOpenid(String rd3session){
+        List<Seminar> seminarList = seminarMapper.selectSeminarsByUuidList(
                 collectseminarMapper.selectUuidByOpenid(redisUtils.get(rd3session)));
+        List<SeminarVo> seminarVoList = new ArrayList<>();
+
+        if(seminarList == null){
+            return seminarVoList;
+        }else{
+            for (Seminar seminar: seminarList) {
+                SeminarVo seminarVo = mapper.map(seminar, SeminarVo.class);
+                seminarVo.setCollect(Boolean.TRUE);
+                seminarVoList.add(seminarVo);
+            }
+            return seminarVoList;
+        }
     }
 
     @Override
