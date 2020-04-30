@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/collectSeminar")
@@ -19,9 +20,8 @@ public class CollectseminarController {
     }
 
     @PostMapping
-    public void saveSeminarCollect(@RequestParam("uuid") String uuid,
-                                   @RequestParam("rd3session") String rd3session){
-        collectseminarService.saveSeminar(uuid, rd3session);
+    public void saveSeminarCollect(@RequestBody Map<String,String> info){
+        collectseminarService.saveSeminar(info.get("uuid"), info.get("rd3session"));
     }
 
     @GetMapping
@@ -30,8 +30,7 @@ public class CollectseminarController {
     }
 
     @DeleteMapping
-    public void deleteSeminarCollect(@RequestParam("uuid") String uuid,
-                                     @RequestParam("rd3session") String rd3session){
-        collectseminarService.deleteSeminar(uuid, rd3session);
+    public void deleteSeminarCollect(@RequestBody Map<String,String> info){
+        collectseminarService.deleteSeminar(info.get("uuid"), info.get("rd3session"));
     }
 }

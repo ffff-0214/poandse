@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/collectXdjobs")
@@ -19,9 +20,10 @@ public class CollectxdjobsController {
     }
 
     @PostMapping
-    public void saveXdjobsCollect(@RequestParam("uuid") String uuid,
-                             @RequestParam("rd3session") String rd3session){
-        collectxdjobsService.saveXdjobs(uuid, rd3session);
+    //    @RequestParam("uuid") String uuid,
+//    @RequestParam("rd3session") String rd3session
+    public void saveXdjobsCollect(@RequestBody Map<String,String> info){
+        collectxdjobsService.saveXdjobs(info.get("uuid"), info.get("rd3session"));
     }
 
     @GetMapping
@@ -30,8 +32,9 @@ public class CollectxdjobsController {
     }
 
     @DeleteMapping
-    public void deleteXdjobsCollect(@RequestParam("uuid") String uuid,
-                                     @RequestParam("rd3session") String rd3session){
-        collectxdjobsService.deleteXdjobs(uuid, rd3session);
+//    @RequestParam("uuid") String uuid,
+//    @RequestParam("rd3session") String rd3session
+    public void deleteXdjobsCollect(@RequestBody Map<String,String> info){
+        collectxdjobsService.deleteXdjobs(info.get("uuid"), info.get("rd3session"));
     }
 }
