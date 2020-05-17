@@ -2,7 +2,7 @@ package edu.qingtai.poandse.domain;
 
 import java.sql.Date;
 
-public class SeminarVo {
+public class SeminarVoDetail {
     private String uuid;
 
     private String title;
@@ -15,7 +15,7 @@ public class SeminarVo {
 
     private Integer favorite;
 
-//    private String content;
+    private String content;
 
     private Boolean collect = Boolean.FALSE;
 
@@ -67,13 +67,13 @@ public class SeminarVo {
         this.favorite = favorite;
     }
 
-//    public String getContent() {
-//        return content;
-//    }
-//
-//    public void setContent(String content) {
-//        this.content = content == null ? null : content.trim();
-//    }
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
+    }
 
     public Boolean getCollect() {
         return collect;

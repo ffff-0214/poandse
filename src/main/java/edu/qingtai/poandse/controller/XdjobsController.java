@@ -2,6 +2,7 @@ package edu.qingtai.poandse.controller;
 
 import edu.qingtai.poandse.domain.Xdjobs;
 import edu.qingtai.poandse.domain.XdjobsVo;
+import edu.qingtai.poandse.domain.XdjobsVoDetail;
 import edu.qingtai.poandse.service.XdjobsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,5 +28,10 @@ public class XdjobsController {
         return xdjobsService.queryTrueXdjobs(pageIndex, rd3session);
     }
 
+    @GetMapping(value = "/content")
+    public XdjobsVoDetail getXdjobsContent(@RequestParam("uuid") String uuid,
+                                           @RequestParam("rd3session") String rd3session){
+        return xdjobsService.queryContent(uuid, rd3session);
+    }
 
 }

@@ -44,9 +44,16 @@ public class CollectxdjobsServiceImpl implements CollectxdjobsService{
 
     @Override
     public List<XdjobsVo> queryXdjobsFromOpenid(String rd3session){
-        List<Xdjobs> xdjobsList = xdjobsMapper.selectXdjobsByUuidList(
-                collectxdjobsMapper.selectUuidByOpenid(redisUtils.get(rd3session)));
         List<XdjobsVo> xdjobsVoList = new ArrayList<>();
+
+        List<String> uuidList = collectxdjobsMapper.selectUuidByOpenid(redisUtils.get(rd3session));
+
+        if(uuidList == null || uuidList.isEmpty()){
+            return xdjobsVoList;
+        }
+
+        List<Xdjobs> xdjobsList = xdjobsMapper.selectXdjobsByUuidList(uuidList);
+
 
         if(xdjobsList == null){
             return xdjobsVoList;

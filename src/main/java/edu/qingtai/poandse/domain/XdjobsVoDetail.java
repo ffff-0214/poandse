@@ -2,7 +2,7 @@ package edu.qingtai.poandse.domain;
 
 import java.sql.Date;
 
-public class XdjobsVo {
+public class XdjobsVoDetail {
     private String uuid;
 
     private String title;
@@ -19,7 +19,7 @@ public class XdjobsVo {
 
     private Integer favorite;
 
-//    private String content;
+    private String content;
 
     private Boolean collect = Boolean.FALSE;
 
@@ -87,13 +87,13 @@ public class XdjobsVo {
         this.favorite = favorite;
     }
 
-//    public String getContent() {
-//        return content;
-//    }
-//
-//    public void setContent(String content) {
-//        this.content = content == null ? null : content.trim();
-//    }
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
+    }
 
     public Boolean getCollect() {
         return collect;

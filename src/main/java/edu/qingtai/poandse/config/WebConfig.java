@@ -17,7 +17,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(getVerifyInterceptor())
-                .addPathPatterns("/**");
+                .addPathPatterns("/**").excludePathPatterns("/seminar/content")
+        .excludePathPatterns("/xdjobs/content");
     }
 
 

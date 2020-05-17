@@ -2,6 +2,7 @@ package edu.qingtai.poandse.service;
 
 import edu.qingtai.poandse.domain.Xdjobs;
 import edu.qingtai.poandse.domain.XdjobsVo;
+import edu.qingtai.poandse.domain.XdjobsVoDetail;
 import edu.qingtai.poandse.mapper.CollectxdjobsMapper;
 import edu.qingtai.poandse.mapper.XdjobsMapper;
 import edu.qingtai.poandse.util.ConstData;
@@ -41,6 +42,19 @@ public class XdjobsServiceImpl implements XdjobsService{
             return null;
         }
         return xdjobsMapper.selectXdjobsByUuidList(uuidList);
+    }
+
+    @Override
+    public XdjobsVoDetail queryContent(String uuid, String rd3session){
+        List<String> uuidList = collectxdjobsMapper.selectUuidByOpenid(redisUtils.get(rd3session));
+        Xdjobs xdjobs = xdjobsMapper.selectByPrimaryKey(uuid);
+        XdjobsVoDetail xdjobsVoDetail = mapper.map(xdjobs, XdjobsVoDetail.class);
+        if(uuidList.contains(uuid)){
+            xdjobsVoDetail.setCollect(Boolean.TRUE);
+            return xdjobsVoDetail;
+        }else{
+            return xdjobsVoDetail;
+        }
     }
 
     @Override

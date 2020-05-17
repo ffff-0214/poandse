@@ -2,6 +2,7 @@ package edu.qingtai.poandse.service;
 
 import edu.qingtai.poandse.domain.Seminar;
 import edu.qingtai.poandse.domain.SeminarVo;
+import edu.qingtai.poandse.domain.SeminarVoDetail;
 import edu.qingtai.poandse.mapper.CollectseminarMapper;
 import edu.qingtai.poandse.mapper.SeminarMapper;
 import edu.qingtai.poandse.util.ConstData;
@@ -42,6 +43,19 @@ public class SeminarServiceImpl implements SeminarService{
             return null;
         }
         return seminarMapper.selectSeminarsByUuidList(uuidList);
+    }
+
+    @Override
+    public SeminarVoDetail queryContent(String uuid, String rd3session){
+        List<String> uuidList = collectseminarMapper.selectUuidByOpenid(redisUtils.get(rd3session));
+        Seminar seminar = seminarMapper.selectByPrimaryKey(uuid);
+        SeminarVoDetail seminarVoDetail = mapper.map(seminar, SeminarVoDetail.class);
+        if(uuidList.contains(uuid)){
+            seminarVoDetail.setCollect(Boolean.TRUE);
+            return seminarVoDetail;
+        }else{
+            return seminarVoDetail;
+        }
     }
 
     @Override

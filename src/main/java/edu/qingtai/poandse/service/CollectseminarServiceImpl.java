@@ -45,9 +45,15 @@ public class CollectseminarServiceImpl implements CollectseminarService{
 
     @Override
     public List<SeminarVo> querySeminarFromOpenid(String rd3session){
-        List<Seminar> seminarList = seminarMapper.selectSeminarsByUuidList(
-                collectseminarMapper.selectUuidByOpenid(redisUtils.get(rd3session)));
         List<SeminarVo> seminarVoList = new ArrayList<>();
+
+        List<String> uuidList = collectseminarMapper.selectUuidByOpenid(redisUtils.get(rd3session));
+
+        if(uuidList == null || uuidList.isEmpty()){
+            return seminarVoList;
+        }
+
+        List<Seminar> seminarList = seminarMapper.selectSeminarsByUuidList(uuidList);
 
         if(seminarList == null){
             return seminarVoList;
