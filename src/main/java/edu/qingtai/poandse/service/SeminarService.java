@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface SeminarService {
     List<Seminar> queryPageSeminars(int pageIndex);
-    List<SeminarVo> queryTrueSeminar(int pageIndex, String rd3session);
+    List<SeminarVoDetail> queryTrueSeminar(int pageIndex, String rd3session);
     SeminarVoDetail queryContent(String uuid, String rd3session);
 }

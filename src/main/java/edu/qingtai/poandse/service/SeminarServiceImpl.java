@@ -59,7 +59,7 @@ public class SeminarServiceImpl implements SeminarService{
     }
 
     @Override
-    public List<SeminarVo> queryTrueSeminar(int pageIndex, String rd3session){
+    public List<SeminarVoDetail> queryTrueSeminar(int pageIndex, String rd3session){
 //        Mapper mapper = DozerBeanMapperBuilder.buildDefault();
 
         List<Seminar> seminarList =  queryPageSeminars(pageIndex);
@@ -68,18 +68,18 @@ public class SeminarServiceImpl implements SeminarService{
 
 //        int size = seminarList.size();
 
-        List<SeminarVo> seminarVoList = new ArrayList<>();
+        List<SeminarVoDetail> seminarVoList = new ArrayList<>();
 
         if(seminarList == null){
             return seminarVoList;
         }else{
             for (Seminar seminar: seminarList) {
                 if(uuidList.contains(seminar.getUuid())){
-                    SeminarVo seminarVo = mapper.map(seminar, SeminarVo.class);
+                    SeminarVoDetail seminarVo = mapper.map(seminar, SeminarVoDetail.class);
                     seminarVo.setCollect(Boolean.TRUE);
                     seminarVoList.add(seminarVo);
                 }else{
-                    seminarVoList.add(mapper.map(seminar, SeminarVo.class));
+                    seminarVoList.add(mapper.map(seminar, SeminarVoDetail.class));
                 }
             }
             return seminarVoList;

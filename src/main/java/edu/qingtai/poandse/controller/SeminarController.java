@@ -22,7 +22,7 @@ public class SeminarController {
     }
 
     @GetMapping
-    public List<SeminarVo> getSeminars(@RequestParam("pageIndex") int pageIndex,
+    public List<SeminarVoDetail> getSeminars(@RequestParam("pageIndex") int pageIndex,
                                        @RequestParam("rd3session") String rd3session){
         return seminarService.queryTrueSeminar(pageIndex, rd3session);
     }

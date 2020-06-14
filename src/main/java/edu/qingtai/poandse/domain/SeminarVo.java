@@ -2,7 +2,7 @@ package edu.qingtai.poandse.domain;
 
 import java.sql.Date;
 
-public class SeminarVo {
+public class  SeminarVo {
     private String uuid;
 
     private String title;
